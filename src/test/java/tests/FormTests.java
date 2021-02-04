@@ -22,7 +22,7 @@ public class FormTests {
 
 
     @Test
-    void formFullfillmentCheck() {
+    void checkFormFillTest() {
         open("https://demoqa.com/automation-practice-form");
         $(".main-header").shouldHave(text("Practice Form"));
 
@@ -38,23 +38,30 @@ public class FormTests {
         $(".react-datepicker__year-select").click();
         $(byText("1991")).click();
         $(".react-datepicker__month").find(byText("25")).click();
-        //$("subjects-auto-complete__value-container.subjects-auto-complete__value-container--is-multi").setValue("Mat").find("Math").click();
 
         $("#subjectsInput").setValue("Mat");
         $("#subjectsInput").pressEnter();
         $("#hobbiesWrapper").find(byText("Reading")).click();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/1.jpg"));
+        $("#uploadPicture").uploadFile(new File("./src/test/resources/1.jpg"));
         $("#currentAddress").setValue("Test street 15");
-        $("#stateCity-wrapper").find("#state").click();
-        //$("#state").click();
+
+        $("#state").click();
         $("#state").find(byText("Rajasthan")).click();
         $("#city").click();
         $("#city").find(byText("Jaipur")).click();
         $("#submit").click();
 
 
-        $(".modal-content").shouldHave(text("Thanks for submitting the form"), text("Asia Beta"), text("a@a.com"), text("Male"), text("1111111111"), text("25 January,1991"), text("Math"), text("Reading"),
-                text("Test street 15"), text("Rajasthan Jaipur"));
+        $(".modal-content").shouldHave(text("Thanks for submitting the form"),
+                text("Asia Beta"),
+                text("a@a.com"),
+                text("Male"),
+                text("1111111111"),
+                text("25 January,1991"),
+                text("Math"),
+                text("Reading"),
+                text("Test street 15"),
+                text("Rajasthan Jaipur"));
 
 
     }
